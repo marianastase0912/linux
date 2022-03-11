@@ -61,10 +61,10 @@ static void memory_exit(void)
 	 
 	/* TODO 3: print ti* field values */
 
-	pr_info("pid: %d ==== timestamp: %ld", ti1->pid, ti1->timestamp);
-	pr_info("pid: %d ==== timestamp: %ld", ti2->pid, ti2->timestamp);
-	pr_info("pid: %d ==== timestamp: %ld", ti3->pid, ti3->timestamp);
-	pr_info("pid: %d ==== timestamp: %ld", ti4->pid, ti4->timestamp);
+	pr_info("pid: %d ==== timestamp: %ld\n", ti1->pid, ti1->timestamp);
+	pr_info("pid: %d ==== timestamp: %ld\n", ti2->pid, ti2->timestamp);
+	pr_info("pid: %d ==== timestamp: %ld\n", ti3->pid, ti3->timestamp);
+	pr_info("pid: %d ==== timestamp: %ld\n", ti4->pid, ti4->timestamp);
 
 	/* TODO 4: free ti* structures */
 
