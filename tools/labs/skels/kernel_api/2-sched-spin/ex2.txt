@@ -1,0 +1,6 @@
+Before solving the todos:
+insmod sched-spin.ko 
+sched_spin: loading out-of-tree module taints kernel.
+After acquring the spinlock:
+Genereaza eroare pt ca nu putem face sleep in context atomic
+
