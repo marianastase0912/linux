@@ -1,0 +1,15 @@
+insmod memory.ko 
+memory: loading out-of-tree module taints kernel.
+root@qemux86:~/skels/kernel_api/3-memory# rmmod memory.ko 
+pid: 232 ==== timestamp: -62315
+pid: 208 ==== timestamp: -62315
+pid: 0 ==== timestamp: -62315
+
+
+root@qemux86:~/skels/kernel_api/3-memory# insmod memory.ko 
+root@qemux86:~/skels/kernel_api/3-memory# rmmod memory.ko 
+pid: 1 ==== timestamp: -62315
+pid: 234 ==== timestamp: -20379
+pid: 208 ==== timestamp: -20379
+pid: 0 ==== timestamp: -20379
+
