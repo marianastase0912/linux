@@ -1,0 +1,6 @@
+Analiza a codului, exemplificare uz kmalloc
+insmod mem.ko
+random letter -> se printeaza ce e in memorie, e.g. Z Z Z Z Z Z...
+rmmod mem.ko
+se elibereaza memoria
+
