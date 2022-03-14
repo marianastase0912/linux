@@ -1,0 +1,8 @@
+root@qemux86:~# rmmod skels/kernel_api/4-list/list.ko 
+before exiting: [ 
+(1, 4294911464) 
+(0, 4294911464) 
+(208, 4294911464) 
+(233, 4294911464) 
+]
+
