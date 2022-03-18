@@ -1,0 +1,7 @@
+Changed the MAJOR with 254 from bsg
+error:  #define	EBUSY		16	/* Device or resource busy */
+root@qemux86:~# insmod skels/device_drivers/kernel/so2_cdev.ko 
+so2_cdev: loading out-of-tree module taints kernel.
+Register failed with err code -16!
+insmod: can't insert 'skels/device_drivers/kernel/so2_cdev.ko': Device or resource busy
+

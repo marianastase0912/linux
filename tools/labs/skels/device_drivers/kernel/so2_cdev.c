@@ -21,7 +21,7 @@ MODULE_LICENSE("GPL");
 
 #define LOG_LEVEL	KERN_INFO
 
-#define MY_MAJOR		42
+#define MY_MAJOR		254
 #define MY_MINOR		0
 #define NUM_MINORS		1
 #define MODULE_NAME		"so2_cdev"
