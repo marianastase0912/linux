@@ -21,7 +21,7 @@ MODULE_LICENSE("GPL");
 
 #define LOG_LEVEL	KERN_INFO
 
-#define MY_MAJOR		254
+#define MY_MAJOR		42
 #define MY_MINOR		0
 #define NUM_MINORS		1
 #define MODULE_NAME		"so2_cdev"
@@ -35,6 +35,7 @@ MODULE_LICENSE("GPL");
 
 struct so2_device_data {
 	/* TODO 2: add cdev member */
+	struct cdev so2_cdev;
 	/* TODO 4: add buffer with BUFSIZ elements */
 	/* TODO 7: extra members for home */
 	/* TODO 3: add atomic_t access variable to keep track if file is opened */
@@ -127,7 +128,9 @@ so2_cdev_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 
 static const struct file_operations so2_fops = {
 	.owner = THIS_MODULE,
-/* TODO 2: add open and release functions */
+/* TODO 2: add opien and release functions */
+	.open = so2_cdev_open,
+	.release = so2_cdev_open
 /* TODO 4: add read function */
 /* TODO 5: add write function */
 /* TODO 6: add ioctl function */
@@ -158,6 +161,12 @@ static int so2_cdev_init(void)
 		/* TODO 7: extra tasks for home */
 		/* TODO 3: set access variable to 0, use atomic_set */
 		/* TODO 2: init and add cdev to kernel core */
+		for(i = 0; i < NUM_MINORS; i++)
+		{
+     		   	/* initialize devs[i] fields */
+        		cdev_init(&devs[i].so2_cdev, &so2_fops);
+        		cdev_add(&devs[i].so2_cdev, MKDEV(MY_MAJOR, i), 1);
+   		 }
 	}
 
 	return 0;
