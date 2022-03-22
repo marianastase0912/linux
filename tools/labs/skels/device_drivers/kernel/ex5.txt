@@ -1,0 +1,10 @@
+root@qemux86:~/skels/device_drivers/kernel# insmod so2_cdev.ko 
+Register successfully!
+root@qemux86:~/skels/device_drivers/kernel# cat /dev/so2_cdev 
+File is open!
+hello
+root@qemux86:~/skels/device_drivers/kernel# rmmod so2_cdev.ko 
+File is closed!
+Unregister successfully!
+root@qemux86:~/skels/device_drivers/kernel# 
+
