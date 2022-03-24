@@ -152,6 +152,17 @@ static int kbd_init(void)
 	}
 
 	/* TODO 1: request the keyboard I/O ports */
+	if (!request_region(I8042_STATUS_REG + 1, 1, "com1")) {
+     		/* handle error */
+     		err = -ENODEV;
+		goto out_unregister;
+	}
+	if (!request_region(I8042_DATA_REG + 1, 1, "com2")) {
+     		/* handle error */
+     		err = -ENODEV;
+		goto out_unregister; 
+	}
+	
 
 	/* TODO 3: initialize spinlock */
 
@@ -180,6 +191,8 @@ static void kbd_exit(void)
 
 	/* TODO 1: release keyboard I/O ports */
 
+	release_region(I8042_STATUS_REG + 1, 1);
+	release_region(I8042_DATA_REG + 1, 1);
 
 	unregister_chrdev_region(MKDEV(KBD_MAJOR, KBD_MINOR),
 				 KBD_NR_MINORS);
