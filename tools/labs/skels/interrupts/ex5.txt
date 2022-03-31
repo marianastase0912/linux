@@ -1,0 +1,2 @@
+create write function and implement reset function, added write in fops
+same problem as earlier with cat /dev/kbd :(

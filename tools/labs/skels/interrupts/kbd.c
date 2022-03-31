@@ -98,6 +98,10 @@ static bool get_char(char *c, struct kbd *data)
 static void reset_buffer(struct kbd *data)
 {
 	/* TODO 5: reset count, put_idx, get_idx */
+	data->count = 0;
+	data->put_idx = 0;
+	data->get_idx = 0;
+
 }
 
 /*
@@ -157,6 +161,20 @@ irqreturn_t kbd_interrupt_handler(int interrupt_requests, void *dev)
 	}
 
 	/* TODO 5: add write operation and reset the buffer */
+	static ssize_t kbd_write(struct file *file, const char __user *user_buffer,
+			 size_t size, loff_t *offset) {
+		
+		struct kbd *data = (struct kbd *) file->private_data;
+		int flags;
+
+		spin_lock_irqsave(&data->lock, flags);
+
+		reset_buffer(data);
+
+		spin_unlock_irqrestore(&data->lock, flags);
+
+		return size;
+	}
 
 	static ssize_t kbd_read(struct file *file,  char __user *user_buffer,
 				size_t size, loff_t *offset)
@@ -190,6 +208,7 @@ irqreturn_t kbd_interrupt_handler(int interrupt_requests, void *dev)
 		.release = kbd_release,
 		.read = kbd_read,
 		/* TODO 5: add write operation */
+		.write = kbd_write
 	};
 
 	static int kbd_init(void)
