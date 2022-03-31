@@ -29,6 +29,7 @@ MODULE_LICENSE("GPL");
 struct kbd {
 	struct cdev cdev;
 	/* TODO 3: add spinlock */
+	spinlock_t lock;
 	char buf[BUFFER_SIZE];
 	size_t put_idx, get_idx, count;
 } devs[1];
@@ -97,66 +98,87 @@ static inline u8 i8042_read_data(void)
 {
 	u8 val;
 	/* TODO 3: Read DATA register (8 bits). */
+	val = inb(I8042_DATA_REG);
 	return val;
 }
 
 /* TODO 2: implement interrupt handler */
-irqreturn_t kbd_interrupt_handler(int cnt, void *dev)
-{
+irqreturn_t kbd_interrupt_handler(int interrupt_requests, void *dev)
+{	
+	int scancode, is_pressed, character;
 	pr_info("AJung aici\n");
+
 	/* TODO 3: read the scancode */
+	scancode = i8042_read_data();
 	/* TODO 3: interpret the scancode */
+	is_pressed = is_key_press(scancode);
+	character = get_ascii(scancode);
 	/* TODO 3: display information about the keystrokes */
-	/* TODO 3: store ASCII key to buffer */
-	return IRQ_NONE;
-}
-static int kbd_open(struct inode *inode, struct file *file)
-{
-	struct kbd *data = container_of(inode->i_cdev, struct kbd, cdev);
+	
+	pr_info("IRQ:% d, scancode = 0x%x (%u,%c)\n",
+   		interrupt_requests, scancode, scancode, character);
+		/* TODO 3: store ASCII key to buffer */
 
-	file->private_data = data;
-	pr_info("%s opened\n", MODULE_NAME);
-	return 0;
-}
+		if (is_pressed) {
+			struct kbd *data;
+			data = (struct kbd *) dev;
+			
+			// use spinlock
+			spin_lock(&data->lock);
 
-static int kbd_release(struct inode *inode, struct file *file)
-{
-	pr_info("%s closed\n", MODULE_NAME);
-	return 0;
-}
+			put_char(data, character);
 
-/* TODO 5: add write operation and reset the buffer */
+			spin_unlock(&data->lock);
+		}	
+		return IRQ_NONE;
+	}
+	static int kbd_open(struct inode *inode, struct file *file)
+	{
+		struct kbd *data = container_of(inode->i_cdev, struct kbd, cdev);
 
-static ssize_t kbd_read(struct file *file,  char __user *user_buffer,
-			size_t size, loff_t *offset)
-{
-	struct kbd *data = (struct kbd *) file->private_data;
-	size_t read = 0;
-	/* TODO 4: read data from buffer */
-	return read;
-}
-
-static const struct file_operations kbd_fops = {
-	.owner = THIS_MODULE,
-	.open = kbd_open,
-	.release = kbd_release,
-	.read = kbd_read,
-	/* TODO 5: add write operation */
-};
-
-static int kbd_init(void)
-{
-	int err;
-
-	err = register_chrdev_region(MKDEV(KBD_MAJOR, KBD_MINOR),
-				     KBD_NR_MINORS, MODULE_NAME);
-	if (err != 0) {
-		pr_err("register_region failed: %d\n", err);
-		goto out;
+		file->private_data = data;
+		pr_info("%s opened\n", MODULE_NAME);
+		return 0;
 	}
 
-	/* TODO 1: request the keyboard I/O ports */
-	if (!request_region(I8042_STATUS_REG + 1, 1, "com1")) {
+	static int kbd_release(struct inode *inode, struct file *file)
+	{
+		pr_info("%s closed\n", MODULE_NAME);
+		return 0;
+	}
+
+	/* TODO 5: add write operation and reset the buffer */
+
+	static ssize_t kbd_read(struct file *file,  char __user *user_buffer,
+				size_t size, loff_t *offset)
+	{
+		struct kbd *data = (struct kbd *) file->private_data;
+		size_t read = 0;
+		/* TODO 4: read data from buffer */
+		return read;
+	}
+
+	static const struct file_operations kbd_fops = {
+		.owner = THIS_MODULE,
+		.open = kbd_open,
+		.release = kbd_release,
+		.read = kbd_read,
+		/* TODO 5: add write operation */
+	};
+
+	static int kbd_init(void)
+	{
+		int err;
+
+		err = register_chrdev_region(MKDEV(KBD_MAJOR, KBD_MINOR),
+					     KBD_NR_MINORS, MODULE_NAME);
+		if (err != 0) {
+			pr_err("register_region failed: %d\n", err);
+			goto out;
+		}
+
+		/* TODO 1: request the keyboard I/O ports */
+		if (!request_region(I8042_STATUS_REG + 1, 1, "com1")) {
      		/* handle error */
      		err = -ENODEV;
 		goto out_unregister;
@@ -169,6 +191,8 @@ static int kbd_init(void)
 	
 
 	/* TODO 3: initialize spinlock */
+	// spinlock_t lock;
+	spin_lock_init(&devs[0].lock);
 
 	/* TODO 2: Register IRQ handler for keyboard IRQ (IRQ 1). */
 	err = request_irq(I8042_KBD_IRQ, kbd_interrupt_handler, IRQF_SHARED, "ceva", &devs[0]);
