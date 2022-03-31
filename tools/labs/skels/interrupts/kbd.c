@@ -82,7 +82,16 @@ static void put_char(struct kbd *data, char c)
 
 static bool get_char(char *c, struct kbd *data)
 {
+	int i_ch;
 	/* TODO 4: get char from buffer; update count and get_idx */
+	if (!data->count) {
+		i_ch = data->get_idx;
+		*c = data->buf[i_ch];
+		data->get_idx++;
+		data->count--;
+		return true;
+	}
+
 	return false;
 }
 
@@ -155,6 +164,23 @@ irqreturn_t kbd_interrupt_handler(int interrupt_requests, void *dev)
 		struct kbd *data = (struct kbd *) file->private_data;
 		size_t read = 0;
 		/* TODO 4: read data from buffer */
+		int flags;
+		char character;
+		bool next_char;
+		while (true) {
+			spin_lock_irqsave(&data->lock, flags);
+			next_char = get_char(&character, data);
+			spin_unlock_irqrestore(&data->lock, flags);
+			
+			if (!next_char)
+				break;
+			if (size == 0)
+				break;
+			if (put_user(character, user_buffer))
+				return -1;
+			read++;
+			size--;
+		}
 		return read;
 	}
 

@@ -1,0 +1,9 @@
+get_char function to get the character form the buffer and update cound and get_idx fields
+read: read data from buffer using get_char function until size is 0 and increment reads,
+used splinlock from irq
+I test it like this:
+ mknod /dev/kbd c 42 0
+i load the module
+cat /dev/kbd
+but it's empty
+something must be wrong :))
