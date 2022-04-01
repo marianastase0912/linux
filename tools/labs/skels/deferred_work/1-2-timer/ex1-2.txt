@@ -1,0 +1,17 @@
+Am urmarit TODO-urile si am folosit functiile din lab`
+
+root@qemux86:~# insmod skels/deferred_work/
+1-2-timer/       3-4-5-deferred/  6-kthread/
+root@qemux86:~# insmod skels/deferred_work/1-2-timer/timer.ko 
+timer: loading out-of-tree module taints kernel.
+[timer_init] Init module
+root@qemux86:~# I got here at this time
+I got here at this time
+I got here at this time
+I got here at this time
+I got here at this time
+I got here at this time
+I got here at this time
+
+root@qemux86:~# I got here at this time
+I got here at this time
