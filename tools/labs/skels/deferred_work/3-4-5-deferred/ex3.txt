@@ -1,0 +1,30 @@
+root@qemux86:~# mknod /dev/deferred c 42 0
+root@qemux86:~# insmod skels/deferred_work/3-4-5-deferred/kernel/deferred.ko 
+[deferred_init] Init module
+root@qemux86:~# cat /dev/deferred 
+[deferred_open] Device opened
+cat: read error: Invalid argument
+[deferred_release] Device released
+root@qemux86:~# cd skels/deferred_work/3-4-5-deferred/
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# ls
+kernel  user
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# cd user/
+root@qemux86:~/skels/deferred_work/3-4-5-deferred/user# cd ..
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# ./user/test s 3
+[deferred_open] Device opened
+Set timer to 3 seconds
+[deferred_ioctl] Command: Set timer
+ASTA SUNT EU ARG: 3
+[deferred_release] Device released
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# I got here at this time, PID: 0 ======= ex image name: swapper/0
+
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# ls
+kernel  user
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# ./user/test c
+[deferred_open] Device opened
+Cancel timer
+[deferred_ioctl] Command: Cancel timer
+[deferred_release] Device released
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# rm kernel/deferred.ko 
+root@qemux86:~/skels/deferred_work/3-4-5-deferred# 
+
