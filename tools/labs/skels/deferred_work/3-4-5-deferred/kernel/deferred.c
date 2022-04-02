@@ -40,6 +40,7 @@ static struct my_device_data {
 	/* TODO 1: add timer */
 	struct timer_list timer;
 	/* TODO 2: add flag */
+	int flag;
 	/* TODO 3: add work */
 	/* TODO 4: add list for monitored processes */
 	/* TODO 4: add spinlock to protect list */
@@ -84,15 +85,24 @@ static void timer_handler(struct timer_list *tl)
 	
 	/* TODO 1: implement timer handler */
 	// struct task_info *proc;
-	
+	struct my_device_data *data = from_timer(data, tl, timer);
 	pr_info("I got here at this time, PID: %d ======= ex image name: %s\n", get_current()->pid, get_current()->comm);
 	/* TODO 2: check flags: TIMER_TYPE_SET or TIMER_TYPE_ALLOC */
+	switch (data->flag) {
+		case TIMER_TYPE_SET:
+			break;
+		case TIMER_TYPE_ALLOC:
+			pr_info("Are you here\n");
+			alloc_io();
+			break;
+	
 		/* TODO 3: schedule work */
 		/* TODO 4: iterate the list and check the proccess state */
 			/* TODO 4: if task is dead print info ... */
 			/* TODO 4: ... decrement task usage counter ... */
 			/* TODO 4: ... remove it from the list ... */
 			/* TODO 4: ... free the struct mon_proc */
+	}
 }
 
 static int deferred_open(struct inode *inode, struct file *file)
@@ -119,6 +129,7 @@ static long deferred_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 	switch (cmd) {
 		case MY_IOCTL_TIMER_SET:
 			/* TODO 2: set flag */
+			my_data->flag = MY_IOCTL_TIMER_SET;
 			/* TODO 1: schedule timer */
 			pr_info("ASTA SUNT EU ARG: %ld", arg);
 			if (arg > 0)
@@ -130,6 +141,8 @@ static long deferred_ioctl(struct file *file, unsigned int cmd, unsigned long ar
 			break;
 		case MY_IOCTL_TIMER_ALLOC:
 			/* TODO 2: set flag and schedule timer */
+			my_data->flag = MY_IOCTL_TIMER_ALLOC;
+			mod_timer(&my_data->timer, jiffies + HZ * arg);
 			break;
 		case MY_IOCTL_TIMER_MON:
 		{
@@ -164,6 +177,7 @@ static int deferred_init(void)
 	}
 
 	/* TODO 2: Initialize flag. */
+	dev.flag = TIMER_TYPE_NONE;
 	/* TODO 3: Initialize work. */
 
 	/* TODO 4: Initialize lock and list. */
