@@ -1,0 +1,11 @@
+insmod kthread.ko 
+kthread: loading out-of-tree module taints kernel.
+[kthread_init] Init module
+root@qemux86:~/skels/deferred_work/6-kthread# [my_thread_f] Current process id is 235 (mykthread0)
+rmmod kthread.ko 
+[my_thread_f] Exiting
+[kthread_exit] Exit module
+root@qemux86:~/skels/deferred_work/6-kthread# 
+
+
+
