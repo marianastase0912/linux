@@ -1,0 +1,25 @@
+insmod kmmap/kmmap.ko 
+kmmap: loading out-of-tree module taints kernel.
+root@qemux86:~/skels/memory_mapping# mknod /dev/kmmap c 42 0
+root@qemux86:~/skels/memory_mapping# rmmod kmmap/kmmap.ko 
+root@qemux86:~/skels/memory_mapping# mknod /dev/kmmap c 42 0
+mknod: /dev/kmmap: File exists
+root@qemux86:~/skels/memory_mapping# insmod kmmap/kmmap.ko 
+root@qemux86:~/skels/memory_mapping# test/mmap-test 1
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+matched
+
