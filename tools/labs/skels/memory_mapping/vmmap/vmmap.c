@@ -50,9 +50,18 @@ static int my_release(struct inode *inode, struct file *filp)
 static ssize_t my_read(struct file *file, char __user *user_buffer,
 		size_t size, loff_t *offset)
 {
+	int err;
 	/* TODO 2: check size doesn't exceed our mapped area size */
+	if (size > NPAGES * PAGE_SIZE) {
+		return -ENOMEM;
+	}
 
 	/* TODO 2: copy from mapped area to user buffer */
+	err = copy_to_user((void *) user_buffer, vmalloc_area, size);
+	
+	if (err) {
+		return -1;
+	}
 
 	return size;
 }
@@ -60,10 +69,23 @@ static ssize_t my_read(struct file *file, char __user *user_buffer,
 static ssize_t my_write(struct file *file, const char __user *user_buffer,
 		size_t size, loff_t *offset)
 {
+
+	int err;
+
 	/* TODO 2: check size doesn't exceed our mapped area size */
 
-	/* TODO 2: copy from user buffer to mapped area */
+	if (size > NPAGES * PAGE_SIZE) {
+		return -ENOMEM;
+	}
 
+	/* TODO 2: copy from user buffer to mapped area */
+	
+	err = copy_from_user((void *) user_buffer, vmalloc_area, size);
+	
+	if (err) {
+		return -1;
+	}
+	
 	return size;
 }
 
