@@ -1,0 +1,280 @@
+root@qemux86:~/skels/block_device_drivers/1-2-3-6-ram-disk/user# ./ram-disk-test
+ 
+insmod ../kernel/ram-disk.ko
+mknod /dev/myblock b 240 0
+mknod: /dev/myblock: File exists
+Request received read --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   0 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   1 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   2 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   3 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   4 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   5 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   6 ... passed
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+test sector   7 ... passed
+Request received read --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector   8 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector   9 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector  10 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector  11 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector  12 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector  13 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector  14 ... passed
+Request received write --- start sector: [8] --- total size: [4096] --- data size: [4096] 
+test sector  15 ... passed
+Request received read --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  16 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  17 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  18 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  19 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  20 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  21 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  22 ... passed
+Request received write --- start sector: [16] --- total size: [4096] --- data size: [4096] 
+test sector  23 ... passed
+Request received read --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  24 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  25 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  26 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  27 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  28 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  29 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  30 ... passed
+Request received write --- start sector: [24] --- total size: [4096] --- data size: [4096] 
+test sector  31 ... passed
+Request received read --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  32 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  33 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  34 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  35 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  36 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  37 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  38 ... passed
+Request received write --- start sector: [32] --- total size: [4096] --- data size: [4096] 
+test sector  39 ... passed
+Request received read --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  40 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  41 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  42 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  43 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  44 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  45 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  46 ... passed
+Request received write --- start sector: [40] --- total size: [4096] --- data size: [4096] 
+test sector  47 ... passed
+Request received read --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  48 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  49 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  50 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  51 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  52 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  53 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  54 ... passed
+Request received write --- start sector: [48] --- total size: [4096] --- data size: [4096] 
+test sector  55 ... passed
+Request received read --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  56 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  57 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  58 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  59 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  60 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  61 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  62 ... passed
+Request received write --- start sector: [56] --- total size: [4096] --- data size: [4096] 
+test sector  63 ... passed
+Request received read --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  64 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  65 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  66 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  67 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  68 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  69 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  70 ... passed
+Request received write --- start sector: [64] --- total size: [4096] --- data size: [4096] 
+test sector  71 ... passed
+Request received read --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  72 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  73 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  74 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  75 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  76 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  77 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  78 ... passed
+Request received write --- start sector: [72] --- total size: [4096] --- data size: [4096] 
+test sector  79 ... passed
+Request received read --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  80 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  81 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  82 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  83 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  84 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  85 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  86 ... passed
+Request received write --- start sector: [80] --- total size: [4096] --- data size: [4096] 
+test sector  87 ... passed
+Request received read --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  88 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  89 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  90 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  91 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  92 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  93 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  94 ... passed
+Request received write --- start sector: [88] --- total size: [4096] --- data size: [4096] 
+test sector  95 ... passed
+Request received read --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector  96 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector  97 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector  98 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector  99 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector 100 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector 101 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector 102 ... passed
+Request received write --- start sector: [96] --- total size: [4096] --- data size: [4096] 
+test sector 103 ... passed
+Request received read --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 104 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 105 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 106 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 107 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 108 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 109 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 110 ... passed
+Request received write --- start sector: [104] --- total size: [4096] --- data size: [4096] 
+test sector 111 ... passed
+Request received read --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 112 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 113 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 114 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 115 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 116 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 117 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 118 ... passed
+Request received write --- start sector: [112] --- total size: [4096] --- data size: [4096] 
+test sector 119 ... passed
+Request received read --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 120 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 121 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 122 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 123 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 124 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 125 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 126 ... passed
+Request received write --- start sector: [120] --- total size: [4096] --- data size: [4096] 
+test sector 127 ... passed
+rmmod ram-disk
+root@qemux86:~/skels/block_device_drivers/1-2-3-6-ram-disk/user# 
+
