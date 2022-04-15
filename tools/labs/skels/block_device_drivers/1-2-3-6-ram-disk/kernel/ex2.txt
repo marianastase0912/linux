@@ -1,0 +1,11 @@
+root@qemux86:~# insmod skels/block_device_drivers/1-2-3-6-ram-disk/kernel/ram-di
+sk.ko 
+ram_disk: loading out-of-tree module taints kernel.
+root@qemux86:~# mknod /dev/myblock b 240 0
+mknod: /dev/myblock: File exists
+root@qemux86:~# echo "abc"> /dev/myblock
+Request received read --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+Request received write --- start sector: [0] --- total size: [4096] --- data size: [4096] 
+root@qemux86:~# rmmod skels/block_device_drivers/1-2-3-6-ram-disk/kernel/ram-dis
+k.ko 
+

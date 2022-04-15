@@ -86,12 +86,29 @@ static blk_status_t my_block_request(struct blk_mq_hw_ctx *hctx,
 	struct my_block_dev *dev = hctx->queue->queuedata;
 
 	/* TODO 2: get pointer to request */
+	rq = bd->rq;
 
 	/* TODO 2: start request processing. */
+	blk_mq_start_request(rq);
 
 	/* TODO 2: check fs request. Return if passthrough. */
+    	if (blk_rq_is_passthrough(rq)) {
+       		 printk (KERN_NOTICE "Skip non-fs request\n");
+        	 blk_mq_end_request(rq, BLK_STS_IOERR);
+       		 goto out;
+    	}
 
 	/* TODO 2: print request information */
+	if (rq_data_dir(rq) == 0)
+	{
+		pr_info("Request received read --- start sector: [%lld] --- total size: [%d] --- data size: [%d] \n",
+			blk_rq_pos(rq), blk_rq_bytes(rq), blk_rq_cur_bytes(rq));
+	}
+	if (rq_data_dir(rq) == 1)
+	{
+		pr_info("Request received write --- start sector: [%lld] --- total size: [%d] --- data size: [%d] \n", 
+				blk_rq_pos(rq), blk_rq_bytes(rq), blk_rq_cur_bytes(rq));
+	}
 
 #if USE_BIO_TRANSFER == 1
 	/* TODO 6: process the request by calling my_xfer_request */
@@ -100,7 +117,7 @@ static blk_status_t my_block_request(struct blk_mq_hw_ctx *hctx,
 #endif
 
 	/* TODO 2: end request successfully */
-
+	blk_mq_end_request(rq, BLK_STS_OK);
 out:
 	return BLK_STS_OK;
 }
@@ -188,11 +205,14 @@ static int __init my_block_init(void)
      	}
 
 	/* TODO 2: create block device using create_block_device */
-
+	err = create_block_device(&g_dev);
+	if (err < 0)
+		goto out;
 	return 0;
 
 out:
 	/* TODO 2: unregister block device in case of an error */
+	unregister_blkdev(MY_BLOCK_MAJOR, MY_BLKDEV_NAME);
 	return err;
 }
 
@@ -214,6 +234,7 @@ static void delete_block_device(struct my_block_dev *dev)
 static void __exit my_block_exit(void)
 {
 	/* TODO 2: cleanup block device using delete_block_device */
+	delete_block_device(&g_dev);
 
 	/* TODO 1: unregister block device */
 	unregister_blkdev(MY_BLOCK_MAJOR, MY_BLKDEV_NAME);
