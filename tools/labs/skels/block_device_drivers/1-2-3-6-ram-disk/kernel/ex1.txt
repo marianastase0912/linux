@@ -1,0 +1,29 @@
+insmod skels/block_device_drivers/1-2-3-6-ram-disk/kernel/ram-di
+sk.ko 
+ram_disk: loading out-of-tree module taints kernel.
+root@qemux86:~# cat /proc/devices
+Character devices:
+  1 mem
+  2 pty
+  3 ttyp
+  4 /dev/vc/0
+  4 tty
+  5 /dev/tty
+  5 /dev/console
+  5 /dev/ptmx
+  7 vcs
+ 10 misc
+ 13 input
+128 ptm
+136 pts
+229 hvc
+253 virtio-portsdev
+254 bsg
+
+Block devices:
+  7 loop
+240 mybdev
+254 virtblk
+259 blkext
+
+Am incercat si cu MAJOR 7, esueaza pt ca deja mai exista un device care are acest MAJOR
