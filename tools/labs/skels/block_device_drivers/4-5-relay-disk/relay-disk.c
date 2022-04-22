@@ -41,6 +41,11 @@ static void send_test_bio(struct block_device *bdev, int dir)
 	bio_add_page(bio, page, KERNEL_SECTOR_SIZE, 0);
 
 	/* TODO 5: write message to bio buffer if direction is write */
+	if (dir == REQ_OP_WRITE) {
+		buf = kmap_atomic(page);
+		memcpy(buf, BIO_WRITE_MESSAGE, strlen(BIO_WRITE_MESSAGE));
+		kunmap_atomic(buf);
+	}
 
 	/* TODO 4: submit bio and wait for completion */
 	submit_bio_wait(bio);
@@ -94,7 +99,7 @@ static void close_disk(struct block_device *bdev)
 static void __exit relay_exit(void)
 {
 	/* TODO 5: send test write bio */
-
+	send_test_bio(phys_bdev, REQ_OP_WRITE);
 	close_disk(phys_bdev);
 }
 
