@@ -229,14 +229,34 @@ static struct minfs_dir_entry *minfs_find_entry(struct dentry *dentry,
 	 * Fill bhp with return value.
 	 */
 
+	bh = sb_bread(sb, mii->data_block);
+	if (bh == NULL)
+	{
+		printk(LOG_LEVEL "block can't be read :(  \n");
+		return NULL;
+	}
+
+	*bhp = bh;
+
 	for (i = 0; i < MINFS_NUM_ENTRIES; i++) {
 		/* TODO 6: Traverse all entries, find entry by name
 		 * Use `de' to traverse. Use `final_de' to store dentry
 		 * found, if existing.
 		 */
+		de = ((struct minfs_dir_entry *) bh->b_data) + i;
+		
+		if (de->ino != 0)
+		{
+			if (strcmp(name, de->name) == 0) {
+				pr_info("name --> %s \n", name);
+				final_de = de;
+				break;
+			}
+		}
 	}
 
 	/* bh needs to be released by caller. */
+
 	return final_de;
 }
 

@@ -1,0 +1,20 @@
+OPTIONS: I18n 
+Compiled on Dec 23 2019, 02:06:26.
+Port serial.pts, 02:30:21
+root@qemux86:~/skels/filesystems/minfs/user# insmod ../kernel/minfs.ko
+minfs: loading out-of-tree module taints kernel.
+root@qemux86:~/skels/filesystems/minfs/user# ./mkfs.minfs /dev/vdb
+root@qemux86:~/skels/filesystems/minfs/user# 
+root@qemux86:~/skels/filesystems/minfs/user#  mkdir -p /mnt/minfs
+root@qemux86:~/skels/filesystems/minfs/user# 
+root@qemux86:~/skels/filesystems/minfs/user#  mount -t minfs /dev/vdb /mnt/minfs
+root@qemux86:~/skels/filesystems/minfs/user#  ls -l /mnt/minfs
+Read a.txt from folder /, ctx->pos: 0
+ls: /mnt/minfs/a.txt: No such file or directory
+root@qemux86:~/skels/filesystems/minfs/user#  mount -t minfs /dev/vdb /mnt/minfs
+mount: mounting /dev/vdb on /mnt/minfs failed: Device or resource busy
+root@qemux86:~/skels/filesystems/minfs/user#  touch /mnt/minfs/peanuts.txt
+touch: /mnt/minfs/peanuts.txt: Permission denied
+root@qemux86:~/skels/filesystems/minfs/user# 
+
+
