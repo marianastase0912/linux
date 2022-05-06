@@ -1,0 +1,31 @@
+root@qemux86:~/skels/filesystems/myfs#  insmod myfs.ko
+myfs: loading out-of-tree module taints kernel.
+root@qemux86:~/skels/filesystems/myfs#  mkdir -p /mnt/myfs
+root@qemux86:~/skels/filesystems/myfs#  mount -t myfs none /mnt/myfs
+root inode has 2 link(s)
+root@qemux86:~/skels/filesystems/myfs#  touch /mnt/myfs/peanuts.txt
+touch: /mnt/myfs/peanuts.txt: No such device or address
+root@qemux86:~/skels/filesystems/myfs# ls /mnt/myfs/
+peanuts.txt
+root@qemux86:~/skels/filesystems/myfs#  mkdir -p /mnt/myfs/mountain/forest
+root@qemux86:~/skels/filesystems/myfs#  touch /mnt/myfs/mountain/forest/tree.txt
+touch: /mnt/myfs/mountain/forest/tree.txt: No such device or address
+root@qemux86:~/skels/filesystems/myfs# ls /mnt/myfs/mountain/forest/tree.txt
+/mnt/myfs/mountain/forest/tree.txt
+root@qemux86:~/skels/filesystems/myfs#  rm /mnt/myfs/mountain/forest/tree.txt
+rm: can't remove '/mnt/myfs/mountain/forest/tree.txt': Operation not permitted
+root@qemux86:~/skels/filesystems/myfs#  rmdir /mnt/myfs/mountain/forest
+rmdir: '/mnt/myfs/mountain/forest': Directory not empty
+root@qemux86:~/skels/filesystems/myfs#  echo "chocolate" > /mnt/myfs/peanuts.txt
+-sh: can't create /mnt/myfs/peanuts.txt: No such device or address
+root@qemux86:~/skels/filesystems/myfs#  cat /mnt/myfs/peanuts.txt
+cat: can't open '/mnt/myfs/peanuts.txt': No such device or address
+root@qemux86:~/skels/filesystems/myfs# umount /mnt/myfs
+root@qemux86:~/skels/filesystems/myfs# rmmod myfs
+root@qemux86:~/skels/filesystems/myfs# 
+
+
+
+
+
+

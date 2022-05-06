@@ -1,0 +1,59 @@
+oot@qemux86:~/skels/filesystems/myfs# insmod myfs.ko
+myfs: loading out-of-tree module taints kernel.
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  mkdir -p /mnt/myfs
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  mount -t myfs none /mnt/myfs
+root inode has 2 link(s)
+root@qemux86:~/skels/filesystems/myfs#  
+root@qemux86:~/skels/filesystems/myfs#   touch /mnt/myfs/peanuts.txt
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  mkdir -p /mnt/myfs/mountain/forest
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  touch /mnt/myfs/mountain/forest/tree.txt
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  rm /mnt/myfs/mountain/forest/tree.txt
+rm: can't remove '/mnt/myfs/mountain/forest/tree.txt': Operation not permitted
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  rmdir /mnt/myfs/mountain/forest
+rmdir: '/mnt/myfs/mountain/forest': Directory not empty
+root@qemux86:~/skels/filesystems/myfs#  
+root@qemux86:~/skels/filesystems/myfs#   echo "chocolate" > /mnt/myfs/peanuts.tx
+t
+root@qemux86:~/skels/filesystems/myfs# 
+root@qemux86:~/skels/filesystems/myfs#  cat /mnt/myfs/peanuts.txt
+chocolate
+root@qemux86:~/skels/filesystems/myfs# 
+
+
+
+root@qemux86:~/skels/filesystems/myfs#  ./test-myfs-2.sh
++ insmod myfs.ko
+myfs: loading out-of-tree module taints kernel.
++ mkdir -p /mnt/myfs
++ mount -t myfs none /mnt/myfs
+root inode has 2 link(s)
++ ls -laid /mnt/myfs
+   4208 drwxr-xr-x    2 root     root             0 May  6 23:01 /mnt/myfs
++ cd /mnt/myfs
++ touch myfile
++ ls -lai
+   4208 drwxr-xr-x    2 root     root             0 May  6 23:01 .
+    718 drwxr-xr-x    3 root     root          1024 May  6 06:20 ..
+   4213 -rw-r--r--    1 root     root             0 May  6 23:01 myfile
++ mv myfile myrenamedfile
++ ls -lai
+   4208 drwxr-xr-x    2 root     root             0 May  6 23:01 .
+    718 drwxr-xr-x    3 root     root          1024 May  6 06:20 ..
+   4213 -rw-r--r--    1 root     root             0 May  6 23:01 myrenamedfile
++ ln myrenamedfile mylink
++ ls -lai
+   4208 drwxr-xr-x    2 root     root             0 May  6 23:01 .
+    718 drwxr-xr-x    3 root     root          1024 May  6 06:20 ..
+   4213 -rw-r--r--    2 root     root             0 May  6 23:01 mylink
+   4213 -rw-r--r--    2 root     root             0 May  6 23:01 myrenamedfile
++ echo message
++ cat myrenamedfile
+message
++ rm mylink
+
