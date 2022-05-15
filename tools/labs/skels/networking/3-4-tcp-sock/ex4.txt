@@ -1,0 +1,14 @@
+root@qemux86:~/skels/networking/3-4-tcp-sock# ./test-4.sh 
++ + insmodsleep 1
+ tcp_sock.ko
+tcp_sock: loading out-of-tree module taints kernel.
++ netstat -tuan
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 127.0.0.1:60000         0.0.0.0:*               LISTEN      
++ echo Should connect.
++ sleep+ ../netcat 3
+ -q 4 127.0.0.1 60000 -p 60001
+connection established to 127.0.0.1:60001
++ rmmod tcp_sock
+
