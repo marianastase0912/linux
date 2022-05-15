@@ -1,0 +1,11 @@
+./test-5.sh 
++ pid=234
++ ../netcat -l+ sleep 1
+ -u -p 60001
++ insmod udp_sock.ko
+udp_sock: loading out-of-tree module taints kernel.
+kernelsocket
++ rmmod udp_sock
++ kill 234
+
+

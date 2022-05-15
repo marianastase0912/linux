@@ -63,11 +63,18 @@ static int my_udp_msgsend(struct socket *s)
 	int len = strlen(buffer) + 1;
 
 	/* TODO 1: build message */
+	msg.msg_name = &raddr;
+      	msg.msg_control = NULL;
+      	msg.msg_controllen = 0;
+      	msg.msg_namelen = sizeof(raddr);
+	msg.msg_flags = 0;
+	iov.iov_len = len;
+	iov.iov_base = buffer;
 
 	/* TODO 1: send the message down the socket and return the
 	 * error code.
 	 */
-
+	return kernel_sendmsg(s, &msg, (struct kvec *) &iov, 1, len);
 	return 0;
 }
 
@@ -83,8 +90,18 @@ int __init my_udp_sock_init(void)
 	int addrlen = sizeof(addr);
 
 	/* TODO 1: create UDP socket */
+	err = sock_create_kern(&init_net, PF_INET, SOCK_DGRAM, IPPROTO_UDP, &sock);
+
+	if (err < 0) {
+		goto out;
+	}
 
 	/* TODO 1: bind socket to loopback on port MY_UDP_LOCAL_PORT */
+	err = sock->ops->bind(sock, (struct sockaddr *) &addr, addrlen);
+
+	if (err < 0) {
+		goto out;
+	}
 
 	/* send message */
 	err = my_udp_msgsend(sock);
@@ -97,6 +114,7 @@ int __init my_udp_sock_init(void)
 
 out_release:
 	/* TODO 1: release socket */
+	sock_release(sock);
 out:
 	return err;
 }
@@ -104,6 +122,7 @@ out:
 void __exit my_udp_sock_exit(void)
 {
 	/* TODO 1: release socket */
+	sock_release(sock);
 }
 
 module_init(my_udp_sock_init);
