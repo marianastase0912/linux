@@ -1,0 +1,7 @@
+tcp_sock: loading out-of-tree module taints kernel.
++ netstat -tuan
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+tcp        0      0 127.0.0.1:60000         0.0.0.0:*               LISTEN      
++ rmmod tcp_sock
+
