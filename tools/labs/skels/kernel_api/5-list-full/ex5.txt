@@ -1,0 +1,13 @@
+root@qemux86:~# insmod skels/kernel_api/5-list-full/list-full.ko 
+after first add: [ 
+(1, 4294907319) 
+(0, 4294907319) 
+(208, 4294907319) 
+(236, 4294907319) 
+]
+root@qemux86:~# rmmod skels/kernel_api/5-list-full/list-full.ko 
+after removing expired: [ 
+(1, 4294907319) 
+]
+root@qemux86:~# 
+
