@@ -1,0 +1,4 @@
+I capture the keys, read the data and I print the characters and scancode
+In quemu  "QEMU_DISPLAY=gtk make boot" I tested using dmesg and it prints
+the characters I press, does not recognize yet arrow up down etc, looks like
+it prints the right values for letters

@@ -1,0 +1,1 @@
+se incrementeaza de fiecare data cand ma uit /proc/interrupts/
